@@ -2,21 +2,20 @@
 
 import { mailchimp, newsletter } from "@/resources";
 import { Button, Heading, Input, Text, Background, Column, Row } from "@once-ui-system/core";
-import { opacity, SpacingToken } from "@once-ui-system/core";
+import type { opacity, SpacingToken } from "@once-ui-system/core";
 import { useState } from "react";
 
-function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+function debounce<Args extends unknown[]>(func: (...args: Args) => void, delay: number) {
   let timeout: ReturnType<typeof setTimeout>;
-  return ((...args: Parameters<T>) => {
+  return (...args: Args) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), delay);
-  }) as T;
+  };
 }
 
 export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...flex }) => {
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [touched, setTouched] = useState<boolean>(false);
 
   const validateEmail = (email: string): boolean => {
     if (email === "") {
@@ -41,7 +40,6 @@ export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...fl
   const debouncedHandleChange = debounce(handleChange, 2000);
 
   const handleBlur = () => {
-    setTouched(true);
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
     }
@@ -158,8 +156,8 @@ export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...fl
             />
           </div>
           <div id="mce-responses" className="clearfalse">
-            <div className="response" id="mce-error-response" style={{ display: "none" }}></div>
-            <div className="response" id="mce-success-response" style={{ display: "none" }}></div>
+            <Column className="response" id="mce-error-response" style={{ display: "none" }} />
+            <Column className="response" id="mce-success-response" style={{ display: "none" }} />
           </div>
           <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
             <input

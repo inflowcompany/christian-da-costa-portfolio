@@ -1,93 +1,47 @@
-# Magic Portfolio
+# Portfólio Profissional — Christian Da Costa
 
-Magic Portfolio is a simple, clean, beginner-friendly portfolio template. It supports an MDX-based content system for projects and blog posts, an about / CV page and a gallery.
+> **Technical Project Manager | SaaS • Product • Implementation • AI**  
+> *"Transformo problemas operacionais em projetos de tecnologia estruturados — de discovery e requisitos até entrega, QA e evolução."*
 
-View the demo [here](https://demo.magic-portfolio.com).
+---
 
-![Magic Portfolio](public/images/og/home.jpg)
+## Visão Geral
 
-Launch your portfolio on [Aveiro](https://www.aveiro.app/marketplace/spotlight), our managed publishing platform. Update case studies, blog posts and content through MCP from your favorite AI tools.
+Este repositório contém o portfólio profissional de **Christian Da Costa**, estruturado para apresentar cases reais em gestão de projetos técnicos, entrega de produtos SaaS, análise de negócios, conformidade regulatória (FNRH/MinTur e LGPD), suítes de QA e implantação internacional.
 
-## Getting started
+### Cases Publicados
+1. **Roomix — Hospitality Technology Ecosystem**: Gestão de projeto e arquitetura de produto para ecossistema hoteleiro multi-tenant composto por 6 sistemas (SaaS, Channel Manager, Console, Direct / Booking Generator, Agents e Sales Core).
+2. **Inflowork Looping Engineering**: Definição de produto, matriz de papéis e validação de performance para o Canvas Workspace OS de tela infinita.
+3. **Inflowork Business Systems**: Condução do ecossistema de sistemas operacionais internos, centrais de suporte (Help System) e automações.
+4. **Logistics Operations SaaS**: Mapeamento de processos, inteligência operacional, matriz de riscos (*Risk Ledger*) e modelos financeiros para plataforma logística.
+5. **HQBeds — International SaaS Implementation**: Implantação de software SaaS hoteleiro para propriedades no Brasil, Argentina, Peru, México e Estados Unidos (jul/2024 – jul/2026).
 
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
+---
 
-**2. Install dependencies**
-```
-npm install
-```
+## Tecologias & Infraestrutura
 
-**3. Run dev server**
-```
-npm run dev
-```
+- **Framework**: Next.js 16 (App Router, Turbopack, Server Components, SSG)
+- **Design System**: Once UI (`@once-ui-system/core` 1.5.6)
+- **Conteúdo & MDX**: `next-mdx-remote` com componentes customizados (`RoomixEcosystemMap`, `ProjectManagementFlow`, `RoomixArchitectureDiagram`, `EvidenceBlock`)
+- **Qualidade & QA**: Biome Lint, TypeScript strict mode, suíte de testes unitários Node.js (`tests/*.test.mjs`)
+- **Deploy Ready**: Netlify (OpenNext automatic runtime adapter)
 
-**4. Edit config**
-```
-src/resources/once-ui.config.js
-```
+---
 
-**5. Edit content**
-```
-src/resources/content.js
-```
+## Quality Gates
 
-**6. Create blog posts / projects**
-```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
+Para validar o projeto localmente:
+
+```bash
+# Executa linting, typecheck, testes unitários e build do Next.js
+npm run qa
 ```
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+---
 
-## Documentation
+## Origem e Licença
 
-Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfolio/quick-start)
+Este portfólio foi construído utilizando como base o template open-source [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio) v2.3.0 por Lorant One / [Once UI](https://once-ui.com).
 
-## Features
-
-### Once UI
-- All tokens, components & features of [Once UI](https://once-ui.com)
-
-### SEO
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
-
-### Design
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
-
-### Content
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
-
-### Localization
-- A localized, earlier version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
-
-## Creators
-
-Lorant One: [Threads](https://www.threads.net/@lorant.one) / [LinkedIn](https://www.linkedin.com/in/lorant-one/)
-
-## Get involved
-
-- Join the Design Engineers Club on [Discord](https://discord.com/invite/5EyAQ4eNdS) and share your project with us!
-- Deployed your docs? Share it on the [Once UI Hub](https://once-ui.com/hub) too! We feature our favorite apps on our landing page.
-
-## License
-
-Distributed under the CC BY-NC 4.0 License.
-- Attribution is required.
-- Commercial usage is not allowed.
-- You can extend the license to [Dopler CC](https://dopler.app/license) by purchasing a [Once UI Pro](https://once-ui.com/pricing) license.
-
-See `LICENSE.txt` for more information.
-
-## Deploy with Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+- **Licença do Template**: Distributed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+- A atribuição ao Once UI é mantida em `NOTICE.md` e no footer da aplicação conforme os termos aplicáveis.

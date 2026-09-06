@@ -1,4 +1,4 @@
-import {
+import type {
   DataStyleConfig,
   DisplayConfig,
   EffectsConfig,
@@ -14,27 +14,28 @@ import {
 import { home, person, social } from "./content";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL: string = "https://demo.magic-portfolio.com";
+// Canonical domain [A VALIDAR]. Netlify provides the URL at build time.
+const baseURL: string = (
+  process.env.NEXT_PUBLIC_SITE_URL || process.env.DEPLOY_PRIME_URL || process.env.URL || "http://localhost:3100"
+).replace(/\/$/, "");
 
 const routes: RoutesConfig = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": true,
-  "/gallery": true,
+  "/blog": false,
+  "/gallery": false,
 };
 
 const display: DisplayConfig = {
-  location: true,
-  time: true,
+  location: false,
+  time: false,
   themeSwitcher: true,
 };
 
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
-const protectedRoutes: ProtectedRoutesConfig = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
-};
+const protectedRoutes: ProtectedRoutesConfig = {};
 
 // Import and set font for each variant
 import { Geist } from "next/font/google";

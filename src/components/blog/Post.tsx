@@ -2,10 +2,11 @@
 
 import { Card, Column, Media, Row, Avatar, Text } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
+import type { getPosts } from "@/utils/utils";
 import { person } from "@/resources";
 
 interface PostProps {
-  post: any;
+  post: ReturnType<typeof getPosts>[number];
   thumbnail: boolean;
   direction?: "row" | "column";
 }
@@ -33,7 +34,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
           cursor="interactive"
           radius="l"
           src={post.metadata.image}
-          alt={"Thumbnail of " + post.metadata.title}
+          alt={`Thumbnail of ${post.metadata.title}`}
           aspectRatio="16 / 9"
         />
       )}

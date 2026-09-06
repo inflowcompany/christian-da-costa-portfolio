@@ -1,0 +1,220 @@
+---
+title: "Roomix — Hospitality Technology Ecosystem"
+summary: "Gestão de projeto e estruturação de um ecossistema multi-produto de tecnologia hoteleira integrando PMS, Channel Manager, Reserva Direta, Automações e Agentes de IA."
+order: 1
+status: "[A VALIDAR]"
+images: []
+team: []
+modules:
+  - name: "Roomix SaaS"
+    description: "Core PMS multi-tenant, gestão de reservas, faturamento, automação de mensagens e conformidade FNRH Digital/LGPD."
+  - name: "Roomix Console"
+    description: "Painel de operações de plataforma (Platform Ops), onboarding de propriedades, controle de solicitações comerciais e fila LGPD."
+  - name: "Roomix Channel Manager"
+    description: "Motor de conectividade multi-canal para sincronização bidirecional de tarifas e disponibilidade com OTAs (Booking.com, Airbnb, Expedia)."
+  - name: "Roomix Direct"
+    description: "Motor de reservas diretas para hóspedes com templates premium, checkout transparente e gestão de vouchers."
+  - name: "Booking Generator"
+    description: "Gerador de reservas e motor de venda direta para hóspedes integrados ao Roomix Direct."
+---
+
+## Overview
+
+**Roomix** é um **Ecossistema de Tecnologia Hospitalar (Hospitality Technology Ecosystem)** desenvolvido para transformar a gestão de propriedades hoteleiras (hotéis, pousadas e resorts). Projetado em arquitetura multi-tenant com segregação rigorosa por propriedade (`property_id`), o ecossistema conecta as operações do dia a dia da hotelaria a canais globais de distribuição, automações de atendimento e inteligência artificial.
+
+Diferente de um sistema monolítico isolado, o Roomix é composto por cinco produtos interconectados que atendem a diferentes atores da operação hoteleira:
+
+<RoomixEcosystemMap />
+
+---
+
+## Context
+
+O mercado de tecnologia hospitalar no Brasil exige alta aderência a regulamentações governamentais e fiscais, além de integração fluida com grandes canais de venda (OTAs) e meios de pagamento digitais. As propriedades enfrentavam gargalos operacionais devido a:
+- Processos manuais de check-in e envio de fichas de hóspedes ao Governo (FNRH/MinTur).
+- Desincronização de inventários entre o sistema local e canais de reserva externos, gerando overbooking.
+- Falta de controle centralizado de consentimentos e privacidade de dados em conformidade com a **LGPD**.
+- Falta de previsibilidade financeira e automação no envio de confirmações e lembretes de pagamento aos hóspedes.
+
+---
+
+## Problem
+
+A complexidade de gerenciar múltiplos sistemas independentes (PMS, Channel Manager, Motor de Reservas Diretas e Gateway de Pagamentos) criava riscos de falha operacional, alto custo de suporte e vulnerabilidade a vazamento de dados. 
+
+O desafio central de **Project Management** consistia em estruturar e coordenar a entrega simultânea de múltiplos módulos de software, garantindo que as integrações externas (Booking.com, Mercado Pago, WhatsApp, FNRH) fossem desenvolvidas com mecanismos de segurança *fail-closed* — impedindo cobranças ou envios acidentais em ambientes de produção antes da homologação final.
+
+---
+
+## My Role
+
+Como **Technical Project Manager / Product & SaaS Project Manager**, Christian Da Costa atuou diretamente no alinhamento estratégico entre necessidades de negócio, requisitos regulatórios e a execução das equipes técnicas. Suas responsabilidades verificáveis no projeto incluem:
+
+- **Discovery & Definição de Produto**: Levantamento de requisitos regulatórios (FNRH Digital / MinTur e LGPD) e tradução em especificações funcionais (PRDs) e especificações técnicas de produto.
+- **Mapeamento de Processos & Requisitos**: Construção de máquinas de estado para reservas, cobranças e mensageria, definindo critérios claros de aceite para desenvolvimento.
+- **Gestão de Escopo & Arquitetura de Produto**: Divisão do ecossistema em cinco produtos desacoplados (SaaS, Console, Channel Manager, Direct e Agents) para mitigar riscos de dependência.
+- **Gestão de Riscos & Travas de Segurança**: Definição e acompanhamento de travas operacionais de produção (*kill switches*, modos dry-run e criptografia de credenciais).
+- **QA & Acceptance Testing**: Estruturação e execução de suítes de teste de integração automatizadas (`fnrh:test`, `lgpd:test`, `billing:test`, `branding:test`, `operational:hardening:test`).
+- **Documentação & Release Management**: Redação de runbooks operacionais, matrizes de readiness de lançamento e controle de implantação em staging/produção.
+
+---
+
+## Discovery
+
+O processo de Discovery transformou dores reais da operação hoteleira e exigências legais em definições estruturadas de produto:
+
+1. **Conformidade FNRH Digital (MinTur)**: Análise das normas da FNSH/Ministério do Turismo para automatizar o envio da Ficha Nacional de Registro de Hóspedes sem expor chaves de API das propriedades ou CPFs de hóspedes em texto claro (`specs/001-fnrh-digital...`).
+2. **Conformidade LGPD**: Mapeamento dos direitos dos titulares de dados para criar um portal imutável de consentimentos e relatórios de retenção sem deletar dados fiscais obrigatórios por lei (`docs/LGPD_COMPLIANCE.md`).
+3. **Automação de Comunicação**: Mapeamento dos momentos críticos da jornada do hóspede (criação de reserva, pendência de pagamento, check-in e check-out) para disparar mensagens personalizadas via variáveis nativas (`{{guest_name}}`, `{{payment_link}}`).
+
+---
+
+## Requirements
+
+O levantamento de requisitos seguiu um fluxo rigoroso de rastreabilidade:
+
+> **Necessidade da Operação** → **Regra de Negócio** → **Requisito Funcional** → **Feature** → **Critério de Aceite / QA Test**
+
+- **Regra de Pagamento Seguro**: Todo pagamento via gateway integrado deve exigir autorização explícita de ambiente (`PAYMENT_GATEWAY_REAL_CONNECT_ENABLED=true` e `PAYMENT_GATEWAY_LIVE_CHECKOUT_ENABLED=true`). Se não configurado, o sistema retorna um estado seguro sem contatar os servidores do Mercado Pago ou Infinity Pay.
+- **Regra de Isolamento Multi-Tenant**: Nenhuma requisição via frontend pode definir manualmente o `tenant_id` ou `organization_id`; o backend resolve a permissão através do token de sessão autenticado (`settings:read`, `commercial:write`).
+- **Regra de Criptografia de Credenciais**: Chaves de API do FNRH e tokens de pagamentos devem ser criptografados individualmente por campo no banco de dados e nunca retornados ao frontend.
+
+---
+
+## Scope
+
+Para evitar os riscos de um monólito frágil, o escopo do ecossistema foi dividido em 5 verticais independentes:
+
+1. **Roomix SaaS**: Focado no dia a dia da propriedade (PMS, FNRH, Billing, Mensagens e Pagamentos).
+2. **Roomix Channel Manager**: Focado na distribuição e sincronização com OTAs (Booking, Airbnb, Expedia).
+3. **Roomix Console**: Focado na gestão de plataforma, onboarding de contas e governança global.
+4. **Roomix Direct**: Focado na venda direta via website próprio com templates premium e vouchers.
+5. **Roomix Agents**: Focado em diagnósticos autônomos por IA e tarefas em segundo plano (Jarvis AI).
+
+---
+
+## Planning
+
+O planejamento do Roomix foi estruturado em marcos de entrega (*milestones*) acompanhados de especificações formais de prontidão (*launch readiness*):
+
+- **Milestone 1 — Launch Readiness Foundation**: Estabelecimento de schemas de banco de dados, isolamento multi-tenant e autenticação RBAC (`specs/001-roomix-launch-readiness`).
+- **Milestone 2 — Operational Hardening & Billing**: Reforço da segurança de rotas, faturamento por propriedade (`billing_invoices`) e solicitações comerciais (`docs/BILLING_AND_PLANS.md`).
+- **Milestone 3 — Compliance & Privacy (FNRH + LGPD)**: Implantação dos módulos de conformidade governamental e privacidade de dados com simulações dry-run (`specs/001-fnrh-digital...`).
+- **Milestone 4 — Channel Manager Intake & Onboarding**: Estruturação da conectividade com a Booking.com em modo read-only e criação do painel de conectividade real (`docs/STAGING_PILOT_CONNECTION_FLOW.md`).
+- **Milestone 5 — Autonomous Agents Integration**: Integração do Jarvis AI com modelos NVIDIA NIM / OpenAI sob guardrails de orçamento (`proj_roomix_agents.json`).
+
+---
+
+## Product / System Architecture
+
+A arquitetura de produto do Roomix garante resiliência e desacoplamento através do padrão **Outbox** e comunicação assíncrona orientada a eventos:
+
+<RoomixArchitectureDiagram />
+
+---
+
+## Execution
+
+A condução da execução técnica por Christian Da Costa seguiu o ciclo de vida de **Project Management em 8 Estágios**:
+
+<ProjectManagementFlow />
+
+Durante a execução, cada especificação avançou com visibilidade ponta-a-ponta através de commits escopados, testes de integração e verificações rigorosas de segurança em ambiente de staging.
+
+---
+
+## QA & Validation
+
+O controle de qualidade no Roomix é sustentado por uma suíte de testes automatizados e runbooks detalhados de validação:
+
+- **Automação de Testes de Integração**:
+  - `npm run fnrh:test`: Valida mascaramento de CPF, ocultação de chave de API e bloqueio de envios não homologados ao Governo.
+  - `npm run lgpd:test`: Valida anonimização dry-run, pré-visualização de exportação de dados e ledger de consentimentos.
+  - `npm run billing:test`: Valida permissões de leitura/escrita em faturas e requisições de add-ons por propriedade.
+  - `npm run branding:test`: Valida atualização de marcas e fallback seguro do sidebar hoteleiro.
+  - `npm run communication:test`: Valida variáveis de templates, outbox de mensagens e idempotência do agendador.
+  - `npm run operational:hardening:test`: Valida segurança de rotas e fail-closed em gateways de pagamento.
+- **Validação com Dados de Teste Sanitizados**: Scripts dedicados para reset seguro de dados de demonstração (`scripts/qa-reset-roomix-demo.ts`) sem impacto em ambientes reais.
+
+---
+
+## Challenges
+
+1. **Gestão de Dependências Multi-Produto**: Coordenar a evolução simultânea do Roomix SaaS e do Channel Manager sem que quebras de contrato de API afetassem a sincronização de reservas.
+2. **Conformidade Regulatória sem Impacto no Checkout**: Desenvolver a integração FNRH Digital exigindo dados de pré-check-in dos hóspedes sem tornar o fluxo de reserva longo ou burocrático.
+3. **Prevenção de Execuções Indevidas em Produção**: Garantir que testes de envio de e-mails, WhatsApp ou cobranças em cartão fossem bloqueados por padrão através de travas rigorosas de ambiente (*kill switches*).
+
+---
+
+## Decisions
+
+- **Decisão 1 — Arquitetura Fail-Closed**: Toda integração com provedores externos (Booking.com, Mercado Pago, FNRH, WhatsApp) permanece desativada por padrão (*fail-closed* 503 ou modo simulação) até que flags duplas de produção sejam configuradas.
+- **Decisão 2 — Padrão Outbox Idempotente**: Adocão do padrão Outbox para disparos de e-mails e atualizações de canais, garantindo que falhas temporárias de rede não dupliquem reservas ou notificações.
+- **Decisão 3 — Agente com Budget Guardrail**: Integração do Jarvis AI (Roomix Agents) com tabela de custos fixada (`COST_TABLE`) e parse estrito de respostas em formato JSON para evitar execuções autônomas fora do orçamento.
+
+---
+
+## Delivery
+
+O estado atual das entregas do ecossistema Roomix divide-se estritamente em:
+
+### Delivered (Entregue & Homologado em Staging)
+- Core PMS com gestão de reservas, inventário e regras de tarifação.
+- Módulo de conformidade regulatória FNRH Digital com pré-check-in.
+- Módulo de privacidade e governança LGPD com relatórios e dry-run.
+- Painel de faturamento por propriedade (`billing_invoices`) e solicitações comerciais.
+- Automação de comunicação orientada a eventos com motor de variáveis.
+- Estrutura de onboarding real do Channel Manager com a Booking.com em modo read-only.
+- Jarvis AI Agent com diagnósticos autônomos (`runBookingReadOnlySmoke`) e integração NVIDIA NIM / OpenAI.
+
+### In Progress (Em Andamento)
+- Homologação do pacote de contato oficial e teste read-only final com o Account Manager da Booking.com (`docs/booking-contact-package.md`).
+
+### Planned (Planejado)
+- Ativação de conectividade live com Airbnb, Expedia e Hostelworld.
+- Ativação de envio de mensagens via WhatsApp e notificações Push nativas.
+
+---
+
+## Results
+
+Todos os resultados demonstrados são técnicos e operacionais verificáveis no código e na documentação do projeto:
+
+- **100% de Aprovação nos Gates de QA**: Suítes de testes automatizados (`fnrh`, `lgpd`, `billing`, `branding`, `communication`, `hardening`) verdes e integradas ao ciclo de build.
+- **Zero Vazamento de Dados Sensíveis**: Implementação de mascaramento de CPF e criptografia de credenciais validadas por testes automatizados.
+- **Alta Resiliência Operacional**: Coordenadas e mantidas travas fail-closed e rotinas assíncronas no outbox worker garantindo estabilidade de produção.
+
+---
+
+## Lessons / Evolution
+
+- **Importância do Discovery Focado em Compliance**: A antecipação dos requisitos da FNRH e LGPD evitou refatorações profundas na estrutura do banco de dados na fase de produção.
+- **Evolução da Gestão via Agentes de IA**: A introdução do Roomix Agents permitiu que ferramentas de diagnóstico autônomo (*smoke tests*) fossem acionadas para identificar rapidamente pendências de conectividade com OTAs.
+
+---
+
+## Evidence
+
+Documentos de auditoria interna, especificações técnicas e runbooks de validação do projeto:
+
+- [Roomix Source of Truth Document](file:///docs/cases/roomix-source-of-truth.md) — Auditoria completa das evidências do ecossistema.
+- Especificações do Projeto: `specs/001-fnrh-digital...`, `specs/001-roomix-launch-readiness`, `specs/002-inventory-pos-evolution`.
+- Runbooks de Operação e QA: `docs/FNRH_DIGITAL.md`, `docs/LGPD_COMPLIANCE.md`, `docs/BILLING_AND_PLANS.md`, `docs/COMMUNICATION_AUTOMATIONS.md`.
+
+<EvidenceBlock kind="image" />
+
+<EvidenceBlock kind="diagram" title="Mapeamento do Ecossistema Roomix" caption="Diagrama dos cinco produtos confirmados do ecossistema Roomix e suas integrações.">
+  <RoomixEcosystemMap />
+</EvidenceBlock>
+
+<EvidenceBlock kind="diagram" title="Fluxo de Gestão de Projetos (8 Estágios)" caption="Workflow de Project Management aplicado por Christian Da Costa na condução do ecossistema.">
+  <ProjectManagementFlow />
+</EvidenceBlock>
+
+<EvidenceBlock kind="diagram" title="Arquitetura de Sincronização & Proteção" caption="Estrutura de dados assíncrona com travas fail-closed em produção.">
+  <RoomixArchitectureDiagram />
+</EvidenceBlock>
+
+<EvidenceBlock kind="text" title="Registro de Evidências e Capturas de Tela">
+  [REDACT BEFORE PUBLICATION] — Capturas de tela e evidências visuais de ambiente real passarão por sanitização de dados sensíveis antes da publicação final do portfólio.
+</EvidenceBlock>

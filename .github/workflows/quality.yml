@@ -1,0 +1,48 @@
+name: Portfolio quality
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Use the documented npm version
+        run: npm install --global npm@11.17.0
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Lint, types, content tests and production build
+        run: npm run qa
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Use the documented npm version
+        run: npm install --global npm@11.17.0
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Audit dependencies before publication
+        run: npm audit --audit-level=high
