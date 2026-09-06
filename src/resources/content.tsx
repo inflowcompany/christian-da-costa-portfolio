@@ -25,7 +25,7 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/",
+    link: "https://github.com/inflowcompany/christian-da-costa-portfolio",
     essential: true,
   },
 ];
