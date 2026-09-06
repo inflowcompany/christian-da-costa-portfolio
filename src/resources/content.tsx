@@ -9,7 +9,7 @@ const person: Person = {
   avatar: "",
   email: "",
   location: "America/Sao_Paulo",
-  languages: ["Português (Nativo)", "Espanhol (Bilíngue)", "Inglês (Profissional)"],
+  languages: ["Português (Nativo)", "Espanhol (Bilíngue)", "Inglês (Limited Working)"],
   locale: "pt-BR",
 };
 

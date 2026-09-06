@@ -30,33 +30,31 @@ export default async function Project({ params }: { params: Promise<{ slug: stri
   return (
     <Column as="article" maxWidth="m" horizontal="center" gap="l" paddingTop="24">
       <Column maxWidth="s" gap="16" horizontal="center" align="center">
-        <SmartLink href="/work">All cases</SmartLink>
-        <Text variant="label-default-s" onBackground="brand-weak">{post.metadata.status}</Text>
+        <SmartLink href="/work">Ver todos os cases</SmartLink>
+        <Text variant="label-default-s" onBackground="brand-weak">
+          {post.metadata.status && post.metadata.status !== "[A VALIDAR]" ? post.metadata.status : "Case Study"}
+        </Text>
         <Heading as="h1" variant="display-strong-m" wrap="balance">{post.metadata.title}</Heading>
         <Text variant="body-default-l" onBackground="neutral-weak">{post.metadata.summary}</Text>
-        <Text variant="body-default-s" onBackground="neutral-weak">
-          Case in preparation. Responsibilities, delivery details and results await official documentation.
-        </Text>
       </Column>
       {post.metadata.images.length > 0 && (
         <Media priority aspectRatio="16 / 9" radius="m" alt={post.metadata.title} src={post.metadata.images[0]} />
       )}
       {post.metadata.modules.length > 0 && (
         <Column fillWidth gap="16" padding="24" border="neutral-alpha-weak" radius="m">
-          <Heading as="h2" variant="heading-strong-l">Ecosystem structure</Heading>
+          <Heading as="h2" variant="heading-strong-l">Estrutura do Ecossistema & Módulos</Heading>
           <Text onBackground="neutral-weak">
-            Known products and modules. Functional descriptions and relationships: [A VALIDAR].
+            Produtos e módulos integrados do ecossistema.
           </Text>
           <Column as="ul" gap="12">
             {post.metadata.modules.map((module) => (
-              <Text as="li" key={module.name}>{module.name} — {module.description}</Text>
+              <Text as="li" key={module.name}><strong>{module.name}</strong> — {module.description}</Text>
             ))}
           </Column>
-          <Text variant="body-default-s" onBackground="neutral-weak">Additional modules: [A VALIDAR].</Text>
         </Column>
       )}
-      <Column as="nav" aria-label="Case sections" fillWidth gap="12" paddingY="24" borderBottom="neutral-alpha-weak">
-        <Text variant="label-strong-s">In this case</Text>
+      <Column as="nav" aria-label="Navegação por seções do case" fillWidth gap="12" paddingY="24" borderBottom="neutral-alpha-weak">
+        <Text variant="label-strong-s">Neste case</Text>
         <Row wrap gap="16">
           {CASE_SECTIONS.map((section) => (
             <SmartLink key={section.id} href={`#${section.id}`}>
@@ -70,11 +68,10 @@ export default async function Project({ params }: { params: Promise<{ slug: stri
       </Column>
       <Column fillWidth gap="32" horizontal="center" marginTop="40">
         <Line maxWidth="40" />
-        <Heading as="h2" variant="heading-strong-xl">More cases</Heading>
+        <Heading as="h2" variant="heading-strong-xl">Outros Cases</Heading>
         <Projects exclude={[post.slug]} range={[1, 2]} />
       </Column>
       <ScrollToHash />
     </Column>
   );
 }
-
