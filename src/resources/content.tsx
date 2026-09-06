@@ -1,306 +1,164 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
-  locale: "en", // BCP 47 language tag for the HTML lang attribute, e.g., 'en', 'ja', 'zh-TW'
+  firstName: "Christian",
+  lastName: "Da Costa",
+  name: "Christian Da Costa",
+  role: "Technical Project Manager | SaaS • Product • Implementation • AI",
+  avatar: "",
+  email: "",
+  location: "America/Sao_Paulo",
+  languages: ["Português (Nativo)", "Espanhol (Bilíngue)", "Inglês (Profissional)"],
+  locale: "pt-BR",
 };
 
-const newsletter: Newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
-};
+const newsletter: Newsletter = { display: false, title: "", description: "" };
 
 const social: Social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
-  // Set essentials: true for links you want to show on the about page
-  {
-    name: "GitHub",
-    icon: "github",
-    link: "https://github.com/once-ui-system",
-    essential: true,
-  },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/christian-da-costa-3881a6303/",
     essential: true,
   },
   {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
-    essential: true,
-  },
-  {
-    name: "Email",
-    icon: "email",
-    link: `mailto:${person.email}`,
+    name: "GitHub",
+    icon: "github",
+    link: "https://github.com/",
     essential: true,
   },
 ];
 
 const home: Home = {
   path: "/",
-  image: "/images/og/home.jpg",
+  image: "/api/og/generate",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  title: `${person.name} — Technical Project Manager`,
+  description: "Transformo problemas operacionais complexos em projetos de tecnologia estruturados — de discovery e requisitos até entrega, QA e evolução.",
+  headline: "Technical Project Manager",
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong>Roomix Ecosystem</strong>
         <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
+        <Text onBackground="brand-medium">Hospitality Technology</Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/roomix",
   },
   subline: (
     <>
-      I'm {person.firstName}, a {person.role.toLowerCase()} at{" "}
-      <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
+      <Text as="span" onBackground="neutral-strong">Christian Da Costa</Text>
+      <br />
+      SaaS • Product • Implementation • AI
     </>
   ),
 };
 
 const about: About = {
   path: "/about",
-  label: "About",
-  title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
-  tableOfContent: {
-    display: true,
-    subItems: false,
-  },
-  avatar: {
-    display: true,
-  },
-  calendar: {
-    display: true,
-    link: "https://cal.com",
-  },
+  label: "Sobre",
+  title: "Sobre Christian Da Costa",
+  description: "Technical Project Manager especialista em ecossistemas SaaS, implementação de produtos, gestão de requisitos, QA e inteligência artificial aplicada.",
+  tableOfContent: { display: true, subItems: false },
+  avatar: { display: false },
+  calendar: { display: false, link: "" },
   intro: {
     display: true,
-    title: "Introduction",
+    title: "Perfil Profissional",
     description: (
       <>
-        {person.firstName} is a {person.location.split("/")[1]?.replace("_", " ")}-based {person.role.toLowerCase()} with a passion for transforming complex challenges
-        into simple, elegant design solutions. Their work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        <Text as="p" variant="body-default-l">
+          Atuo na interseção entre negócio, operação, cliente, produto e tecnologia. Minha trajetória evoluiu de Customer Experience e Implantação para liderança de projetos de produto e gestão técnica (Technical Project Management).
+        </Text>
+        <Text as="p" variant="body-default-m" onBackground="neutral-weak">
+          Especialista em conduzir ecossistemas SaaS multiproduto, mapear requisitos de negócios e regulatórios (como FNRH/MinTur e LGPD), definir arquiteturas funcionais, estabelecer critérios de aceite e coordenar a execução técnica sob travas de segurança em produção.
+        </Text>
+        <Text as="p" variant="body-default-s" onBackground="neutral-weak">
+          Utilizo agentes de IA e ferramentas modernas para otimizar workflows de desenvolvimento, diagnósticos operacionais de conectividade e automação de processos.
+        </Text>
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
-    title: "Work Experience",
+    display: true,
+    title: "Trajetória Profissional",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Inflowork",
+        timeframe: "2024 — Presente",
+        role: "Technical Project Manager & Product Delivery",
         achievements: [
-          <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
+          "Estruturação e coordenação de entregas do ecossistema multiproduto Roomix (PMS, Channel Manager, Console, Direct, Agents).",
+          "Mapeamento de requisitos regulatórios de FNRH Digital / FNSH (Ministério do Turismo) e governança de privacidade LGPD.",
+          "Definição de regras de segurança fail-closed, kill switches e suítes automatizadas de testes de integração e QA.",
+          "Orquestração do produto Inflowork Canvas Workspace OS e sistemas internos de inteligência operacional.",
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "HQBeds",
+        timeframe: "jul/2024 — jul/2026",
+        role: "International SaaS Implementation Specialist & Project Manager",
         achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
+          "Condução de projetos de implantação de software SaaS para clientes no Brasil, Argentina, Peru, México e Estados Unidos.",
+          "Gestão de requisitos operacionais, onboarding de propriedades, parametrização de sistema, gestão de SLAs e mitigações de risco.",
+          "Interface direta entre Cliente, Produto, Suporte, Operações e Equipes Técnicas durante todo o pipeline até o Go-Live.",
+          "Treinamento de equipes hoteleiras internacionais, acompanhamento de adoção e garantia de retenção pós-implantação.",
+        ],
+        images: [],
+      },
+      {
+        company: "Customer Experience & Operations Leadership",
+        timeframe: "Trajetória de Evolução",
+        role: "CX, Implementation & Operations Lead",
+        achievements: [
+          "Liderança de atendimento ao cliente, suporte técnico especializado e onboarding de novos usuários.",
+          "Mapeamento de jornadas de clientes, redução de tempo de implantação e estruturação de bases de conhecimento.",
+          "Evolução contínua do perfil operacional para gestão de produtos, análise de negócios e projetos de tecnologia.",
         ],
         images: [],
       },
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
-    institutions: [
-      {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
-      },
-    ],
+    display: false,
+    title: "Formação",
+    institutions: [],
   },
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Áreas de Atuação",
     skills: [
       {
-        title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Gestão de Projetos & Entrega de Produtos",
+        description: "Estruturação de roadmaps, alinhamento de stakeholders, gestão de escopo, mitigações de riscos e entregas multiproduto.",
+        tags: ["Project Management", "Product Delivery", "SaaS", "Roadmap Management", "Stakeholder Management", "Risk & Dependency Management"].map((name) => ({ name })),
       },
       {
-        title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
-        tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Análise de Negócios & Mapeamento",
+        description: "Levantamento de requisitos, arquitetura funcional, documentação técnica, mapeamento de processos e conformidade regulatória (FNRH/LGPD).",
+        tags: ["Business Analysis", "Requirements Gathering", "Process Mapping", "Scope Definition", "Documentation"].map((name) => ({ name })),
+      },
+      {
+        title: "Implantação, QA & Automações com IA",
+        description: "Onboarding de clientes internacionais, definição de critérios de aceite, suítes de testes de QA e automações orientadas a IA.",
+        tags: ["QA & Acceptance Testing", "Implementation", "AI-assisted Development"].map((name) => ({ name })),
       },
     ],
   },
-};
-
-const blog: Blog = {
-  path: "/blog",
-  label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work: Work = {
   path: "/work",
-  label: "Work",
-  title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  label: "Cases",
+  title: "Projetos & Ecossistemas",
+  description: "Cases de gestão de projetos, produtos SaaS, arquitetura funcional e implantação conduzidos por Christian Da Costa.",
 };
 
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-  ],
-};
+const blog: Blog = { path: "/blog", label: "Artigos", title: "Artigos", description: "" };
+const gallery: Gallery = { path: "/gallery", label: "Galeria", title: "Galeria", description: "", images: [] };
 
 export { person, social, newsletter, home, about, blog, work, gallery };

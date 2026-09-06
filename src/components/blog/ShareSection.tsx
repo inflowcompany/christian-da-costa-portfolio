@@ -109,8 +109,8 @@ export function ShareSection({ title, url }: ShareSectionProps) {
         Share this post:
       </Text>
       <Row data-border="rounded" gap="16" horizontal="center" wrap>
-        {enabledPlatforms.map((platform, index) => (
-          <Button key={index} variant="secondary" size="s" href={platform.generateUrl(title, url)} prefixIcon={platform.icon} />
+        {enabledPlatforms.map((platform) => (
+          <Button key={platform.key} aria-label={`Share on ${platform.label}`} variant="secondary" size="s" href={platform.generateUrl(title, url)} prefixIcon={platform.icon} />
         ))}
         
         {socialSharing.platforms.copyLink && (
@@ -119,6 +119,7 @@ export function ShareSection({ title, url }: ShareSectionProps) {
             size="s"
             onClick={handleCopy}
             prefixIcon="openLink"
+            aria-label="Copy link"
           />
         )}
       </Row>

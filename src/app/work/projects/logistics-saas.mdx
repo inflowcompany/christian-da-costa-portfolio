@@ -1,0 +1,136 @@
+---
+title: "Logistics Operations SaaS"
+summary: "Mapeamento de processos, inteligência operacional e arquitetura funcional para plataforma SaaS de logística e cadeia de suprimentos."
+order: 4
+status: "[A VALIDAR]"
+images: []
+team: []
+modules:
+  - name: "Logistics Analytics & Tracking"
+    description: "Painel de controle e acompanhamento em tempo real de remessas e movimentações logísticas."
+  - name: "Risk Ledger & Operations Ledger"
+    description: "Matriz de mitigação de riscos e registro imutável de eventos operacionais."
+  - name: "Financial & Operational Models"
+    description: "Modelos financeiros e contratos de dados para cálculo de custos e rotas."
+---
+
+## Overview
+
+**Logistics Operations SaaS** é um case focado na estruturação de produto, mapeamento de processos operacionais e definição de arquitetura funcional para plataformas de gestão logística e cadeia de suprimentos. O projeto visa centralizar o rastreamento de cargas, controle de riscos operacionais e visibilidade financeira em uma única solução SaaS.
+
+---
+
+## Context
+
+A operação logística exige acompanhamento em tempo real de remessas, gestão de rotas e mitigação contínua de imprevistos em trânsito. A ausência de um sistema centralizado resultava em falta de previsibilidade de entregas e inconsistências nos relatórios financeiros operacionais.
+
+---
+
+## Problem
+
+Desenvolver um produto capaz de sintetizar grandes volumes de dados de transporte em métricas acionáveis para gestores de logística, garantindo que eventos de risco (atrasos, avarias, inconsistências de frete) fossem registrados com rastreabilidade.
+
+---
+
+## My Role
+
+Christian Da Costa atuou na **Gestão de Requisitos de Produto, Mapeamento Operacional e Definição de Modelos de Dados**, sendo responsável por:
+
+- **Mapeamento de Etapas Logísticas**: Estruturação dos estágios operacionais da remessa (da coleta ao destino final).
+- **Matriz de Riscos (Risk Ledger)**: Definição do registro de riscos e ações mitigatórias para eventos críticos em trânsito.
+- **Modelagem de Dados Operacionais & Financeiros**: Especificação dos contratos de dados para cálculo de custos logísticos e conciliação.
+- **Definição de Requisitos de UI/UX**: Estruturação de dashboards analíticos para acompanhamento visual de remessas.
+
+---
+
+## Discovery
+
+O processo de Discovery com especialistas em logística identificou a necessidade de separar o monitoramento em duas camadas:
+1. **Camada Operacional em Tempo Real**: Rastreamento de remessas e alertas de desvios.
+2. **Camada de Análise Financeira**: Histórico de custos, modelos de cálculo de frete e auditoria de riscos.
+
+---
+
+## Requirements
+
+- **Visualização de Remessas em Tempo Real**: Status atualizado de transporte com filtros por rota e prioridade.
+- **Registro Imutável de Eventos (Risk Ledger)**: Histórico auditável de incidentes e tratativas logísticas.
+- **Contratos de Dados Padronizados**: Formato estruturado para integração com transportadoras e parceiros.
+
+---
+
+## Scope
+
+- **Módulo 1 — Painel de Rastreamento de Remessas**: Acompanhamento visual de status e localizações.
+- **Módulo 2 — Gestão de Riscos & Incidentes**: Registro e mitigação de eventos operacionais.
+- **Módulo 3 — Modelos Financeiros & Analytics**: Cálculo de margem, custos de frete e auditoria.
+
+---
+
+## Planning
+
+O desenvolvimento foi planejado com foco na entrega inicial dos modelos de dados centrais (*Shipment Data Models*) e da camada de rastreamento visual antes da integração de módulos financeiros avançados.
+
+---
+
+## Product / System Architecture
+
+Arquitetura funcional modular:
+
+- **Data Intake Layer**: Processamento de eventos logísticos de transporte.
+- **Core Operations Engine**: Processamento da matriz de riscos e cálculo de prazos.
+- **Analytics Layer**: Visualização consolidada de indicadores logísticos.
+
+---
+
+## Execution
+
+Christian conduziu o mapeamento dos fluxos de dados, alinhando as regras de negócios de transporte com os desenvolvedores e definindo os schemas dos contratos de dados operacionais.
+
+---
+
+## QA & Validation
+
+- **Validação de Schemas de Dados**: Testes de validação dos contratos de dados de remessas.
+- **Simulação de Cenários de Risco**: Testes funcionais simulando desvios de rota e validação do registro de incidentes no *Risk Ledger*.
+
+---
+
+## Challenges
+
+Modelar a variabilidade de rotas e exceções de transporte sem tornar a interface do usuário excessivamente complexa.
+
+---
+
+## Decisions
+
+- **Decisão de Rastreabilidade Estruturada**: Adocão de um registro central de eventos para garantir que qualquer alteração de status de frete possua justificativa auditável.
+
+---
+
+## Delivery
+
+### Delivered
+- Mapeamento completo dos fluxos operacionais e da jornada da remessa.
+- Especificação dos modelos de dados financeiros e operacionais.
+- Design da arquitetura funcional e matriz de riscos logísticos.
+
+---
+
+## Results
+
+- **Clareza Operacional**: Estruturação completa do produto logístico com documentação técnica e funcional pronta para escala.
+
+---
+
+## Lessons / Evolution
+
+Produtos logísticos exigem contratos de dados extremamente rigorosos devido à diversidade de integrações com parceiros externos.
+
+---
+
+## Evidence
+
+- Especificações de Modelos de Dados Logísticos e Matriz de Riscos Operacionais.
+
+<EvidenceBlock kind="image" />
