@@ -85,14 +85,11 @@ O levantamento de requisitos seguiu um fluxo rigoroso de rastreabilidade:
 
 ## Scope
 
-Para evitar os riscos de um monólito frágil, o escopo do ecossistema foi dividido em 6 verticais integradas:
+A definição de escopo sob a gestão de Christian Da Costa estabeleceu fronteiras claras entre os 6 produtos do ecossistema para evitar o risco de um monólito acoplado e garantir entregas independentes:
 
-1. **Roomix SaaS**: Focado no dia a dia da propriedade (PMS, FNRH, Billing, Mensagens e Pagamentos).
-2. **Roomix Channel Manager**: Focado na distribuição e sincronização com OTAs (Booking, Airbnb, Expedia).
-3. **Roomix Console**: Focado na gestão de plataforma, onboarding de contas e governança global.
-4. **Roomix Direct**: Focado na venda direta via website próprio com Booking Generator integrado, templates premium e vouchers.
-5. **Roomix Agents**: Focado em diagnósticos autônomos por IA e tarefas em segundo plano (Jarvis AI).
-6. **Roomix Sales Core**: Focado no pipeline comercial B2B, qualificação e onboarding de novas propriedades hoteleiras.
+- **Fronteiras de Responsabilidade**: Separação estrita entre a gestão hoteleira (SaaS), conectividade com OTAs (Channel Manager), governança de plataforma (Console), venda direta (Direct com Booking Generator), diagnósticos automatizados (Agents) e aquisição comercial (Sales Core).
+- **Contratos de API & Entitlements**: Definição de escopos de permissão (`settings:read`, `commercial:write`) isolados por token de sessão JWT e `property_id`.
+- **Estratégia de Desacoplamento**: Cada módulo possui pipeline de implantação e fila de outbox própria, mitigando dependências diretas durante atualizações de versão.
 
 ---
 
@@ -205,14 +202,6 @@ Documentos de auditoria interna, especificações técnicas e runbooks de valida
 - Runbooks de Operação e QA: `docs/FNRH_DIGITAL.md`, `docs/LGPD_COMPLIANCE.md`, `docs/BILLING_AND_PLANS.md`, `docs/COMMUNICATION_AUTOMATIONS.md`.
 
 <EvidenceBlock kind="image" />
-
-<EvidenceBlock kind="diagram" title="Mapeamento do Ecossistema Roomix" caption="Diagrama dos seis produtos confirmados do ecossistema Roomix e suas integrações.">
-  <RoomixEcosystemMap />
-</EvidenceBlock>
-
-<EvidenceBlock kind="diagram" title="Arquitetura de Sincronização & Proteção" caption="Estrutura de dados assíncrona com travas fail-closed em produção.">
-  <RoomixArchitectureDiagram />
-</EvidenceBlock>
 
 <EvidenceBlock kind="text" title="Registro de Evidências e Capturas de Tela">
   Capturas de tela e evidências visuais de ambiente real foram sanitizadas para preservação de dados sensíveis das propriedades.
