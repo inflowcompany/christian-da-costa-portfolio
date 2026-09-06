@@ -1,47 +1,76 @@
-# Portfólio Profissional — Christian Da Costa
+# Christian Da Costa — Technical Project Manager
 
-> **Technical Project Manager | SaaS • Product • Implementation • AI**  
-> *"Transformo problemas operacionais em projetos de tecnologia estruturados — de discovery e requisitos até entrega, QA e evolução."*
+**SaaS • Product • Implementation • AI**
 
----
+Transformo problemas operacionais em projetos de tecnologia estruturados — de discovery e requisitos até entrega, QA e evolução.
 
-## Visão Geral
-
-Este repositório contém o portfólio profissional de **Christian Da Costa**, estruturado para apresentar cases reais em gestão de projetos técnicos, entrega de produtos SaaS, análise de negócios, conformidade regulatória (FNRH/MinTur e LGPD), suítes de QA e implantação internacional.
-
-### Cases Publicados
-1. **Roomix — Hospitality Technology Ecosystem**: Gestão de projeto e arquitetura de produto para ecossistema hoteleiro multi-tenant composto por 6 sistemas (SaaS, Channel Manager, Console, Direct / Booking Generator, Agents e Sales Core).
-2. **Inflowork Looping Engineering**: Definição de produto, matriz de papéis e validação de performance para o Canvas Workspace OS de tela infinita.
-3. **Inflowork Business Systems**: Condução do ecossistema de sistemas operacionais internos, centrais de suporte (Help System) e automações.
-4. **Logistics Operations SaaS**: Mapeamento de processos, inteligência operacional, matriz de riscos (*Risk Ledger*) e modelos financeiros para plataforma logística.
-5. **HQBeds — International SaaS Implementation**: Implantação de software SaaS hoteleiro para propriedades no Brasil, Argentina, Peru, México e Estados Unidos (jul/2024 – jul/2026).
+[Portfólio](https://christian-da-costa-portfolio.netlify.app) · [LinkedIn](https://www.linkedin.com/in/christian-da-costa-3881a6303/) · [Cases](https://christian-da-costa-portfolio.netlify.app/work)
 
 ---
 
-## Tecologias & Infraestrutura
+## Sobre este repositório
 
-- **Framework**: Next.js 16 (App Router, Turbopack, Server Components, SSG)
-- **Design System**: Once UI (`@once-ui-system/core` 1.5.6)
-- **Conteúdo & MDX**: `next-mdx-remote` com componentes customizados (`RoomixEcosystemMap`, `ProjectManagementFlow`, `RoomixArchitectureDiagram`, `EvidenceBlock`)
-- **Qualidade & QA**: Biome Lint, TypeScript strict mode, suíte de testes unitários Node.js (`tests/*.test.mjs`)
-- **Deploy Ready**: Netlify (OpenNext automatic runtime adapter)
+Este é o repositório público do meu portfólio profissional. Ele reúne cases que demonstram minha atuação na interseção entre **negócio, operações, clientes, produto, tecnologia e qualidade**, com foco em gestão de projetos técnicos, implantação SaaS e evolução de produtos digitais.
 
----
+Minha trajetória profissional evoluiu de **Customer Experience e Implementation** para liderança operacional, Business Analysis e **Technical Project Management**.
 
-## Quality Gates
+## Cases em destaque
 
-Para validar o projeto localmente:
+### Roomix — Hospitality Technology Ecosystem
+Gestão e estruturação de um ecossistema de tecnologia hoteleira composto por produtos e módulos como PMS, Channel Manager, Console, Direct, Agents e Sales Core. O case aborda discovery, requisitos, escopo, riscos, QA, compliance e coordenação de entregas multiproduto.
+
+### Inflowork Looping Engineering
+Definição de produto, arquitetura funcional e validação de performance de um workspace visual em tela infinita para organização e execução de processos.
+
+### Inflowork Business Systems
+Estruturação de sistemas internos, ferramentas de suporte operacional e automações com foco em padronização de processos, visibilidade e eficiência operacional.
+
+### HQBeds — International SaaS Implementation
+Condução de projetos de implantação SaaS hoteleira para clientes no Brasil, Argentina, Peru, México e Estados Unidos, incluindo levantamento de requisitos, configuração, SLAs, treinamento, go-live e adoção.
+
+## Competências demonstradas
+
+- Technical Project Management
+- Product Delivery & Roadmap
+- Requirements Gathering & Business Analysis
+- Process Mapping & Scope Definition
+- SaaS Implementation & Onboarding
+- Stakeholder Management
+- Risk & Dependency Management
+- QA & Acceptance Testing
+- Documentation & Release Validation
+- AI-assisted workflows
+
+## Portfólio ao vivo
+
+**Site:** https://christian-da-costa-portfolio.netlify.app
+
+O site apresenta os cases completos, fluxos de trabalho, arquitetura funcional e evidências selecionadas.
+
+## Código e propriedade intelectual
+
+Este repositório contém apenas o código do portfólio e materiais públicos aprovados. Repositórios de produtos, integrações, automações e sistemas internos permanecem privados quando contêm propriedade intelectual, dados operacionais ou configurações sensíveis.
+
+## Stack do portfólio
+
+- Next.js 16
+- TypeScript
+- Once UI
+- MDX
+- Biome
+- Node.js tests
+- Netlify
+
+## Quality gate
 
 ```bash
-# Executa linting, typecheck, testes unitários e build do Next.js
 npm run qa
 ```
 
----
+O pipeline executa lint, typecheck, testes e build antes da publicação.
 
-## Origem e Licença
+## Licença e atribuição
 
-Este portfólio foi construído utilizando como base o template open-source [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio) v2.3.0 por Lorant One / [Once UI](https://once-ui.com).
+Este portfólio utiliza como base o template open-source [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio) v2.3.0, por Lorant One / [Once UI](https://once-ui.com).
 
-- **Licença do Template**: Distributed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
-- A atribuição ao Once UI é mantida em `NOTICE.md` e no footer da aplicação conforme os termos aplicáveis.
+A licença e as atribuições aplicáveis permanecem preservadas em `NOTICE.md` e `LICENSE`.
