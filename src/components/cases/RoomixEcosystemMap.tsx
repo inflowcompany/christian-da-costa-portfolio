@@ -62,12 +62,21 @@ const PRODUCTS: ProductCardProps[] = [
 
 export function RoomixEcosystemMap() {
   return (
-    <Column fillWidth gap="20" padding="24" border="brand-alpha-medium" background="neutral-alpha-weak" radius="l" marginY="24">
-      <Row fillWidth horizontal="between" vertical="center" wrap gap="12">
-        <Column gap="4">
-          <Row gap="8" vertical="center">
+    <Column
+      fillWidth
+      gap="20"
+      padding="24"
+      border="brand-alpha-medium"
+      background="neutral-alpha-weak"
+      radius="l"
+      marginY="24"
+      style={{ maxWidth: "100%", minWidth: 0, boxSizing: "border-box" }}
+    >
+      <Row fillWidth horizontal="between" vertical="center" wrap gap="12" style={{ minWidth: 0 }}>
+        <Column gap="4" flex={1} style={{ minWidth: 0 }}>
+          <Row gap="8" vertical="center" wrap style={{ minWidth: 0 }}>
             <Icon name="grid" onBackground="brand-medium" />
-            <Text variant="heading-strong-l">Roomix Hospitality Ecosystem</Text>
+            <Text variant="heading-strong-l" wrap="balance">Roomix Hospitality Ecosystem</Text>
           </Row>
           <Text variant="body-default-s" onBackground="neutral-weak">
             Visão arquitetural multi-produto com gestão de dependências e sincronização em tempo real.
@@ -76,21 +85,30 @@ export function RoomixEcosystemMap() {
         <Badge>Multi-Tenant / 3-Tier Architecture</Badge>
       </Row>
 
-      <Grid columns="1" gap="16">
+      <Grid columns="1" gap="16" fillWidth style={{ minWidth: 0 }}>
         {PRODUCTS.map((prod) => (
-          <Column key={prod.name} padding="16" border="neutral-medium" background="surface" radius="m" gap="12">
-            <Row fillWidth horizontal="between" vertical="center" wrap gap="8">
-              <Row gap="8" vertical="center">
+          <Column
+            key={prod.name}
+            fillWidth
+            padding="16"
+            border="neutral-medium"
+            background="surface"
+            radius="m"
+            gap="12"
+            style={{ minWidth: 0, boxSizing: "border-box" }}
+          >
+            <Row fillWidth horizontal="between" vertical="center" wrap gap="8" style={{ minWidth: 0 }}>
+              <Row gap="8" vertical="center" wrap style={{ minWidth: 0 }}>
                 <Icon name={prod.icon} onBackground="brand-strong" />
                 <Text variant="heading-strong-m">{prod.name}</Text>
                 <Tag size="s">{prod.role}</Tag>
               </Row>
-              <Row gap="8" vertical="center">
+              <Row gap="8" vertical="center" wrap style={{ minWidth: 0 }}>
                 {prod.domain && <Tag size="s">{prod.domain}</Tag>}
                 <Badge>{prod.status}</Badge>
               </Row>
             </Row>
-            <Row wrap gap="8">
+            <Row wrap gap="8" fillWidth style={{ minWidth: 0 }}>
               {prod.modules.map((mod) => (
                 <Tag key={mod} size="s" prefixIcon="chevronRight">
                   {mod}

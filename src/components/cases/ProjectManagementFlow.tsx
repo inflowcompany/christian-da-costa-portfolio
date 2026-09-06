@@ -69,11 +69,22 @@ const STEPS: FlowStep[] = [
 
 export function ProjectManagementFlow() {
   return (
-    <Column fillWidth gap="16" padding="24" border="brand-alpha-medium" background="neutral-alpha-weak" radius="l" marginY="24">
-      <Row fillWidth horizontal="between" vertical="center" wrap gap="12">
-        <Row gap="8" vertical="center">
+    <Column
+      fillWidth
+      gap="16"
+      padding="24"
+      border="brand-alpha-medium"
+      background="neutral-alpha-weak"
+      radius="l"
+      marginY="24"
+      style={{ maxWidth: "100%", minWidth: 0, boxSizing: "border-box" }}
+    >
+      <Row fillWidth horizontal="between" vertical="center" wrap gap="12" style={{ minWidth: 0 }}>
+        <Row gap="8" vertical="center" wrap style={{ minWidth: 0 }}>
           <Icon name="gitBranch" onBackground="brand-medium" />
-          <Text variant="heading-strong-l">Project Management View — Execution Workflow</Text>
+          <Text variant="heading-strong-l" wrap="balance">
+            Project Management View — Execution Workflow
+          </Text>
         </Row>
         <Badge>8-Stage PM Lifecycle</Badge>
       </Row>
@@ -82,16 +93,27 @@ export function ProjectManagementFlow() {
         Metodologia de gestão aplicada por Christian Da Costa para estruturar, validar e entregar o ecossistema Roomix.
       </Text>
 
-      <Grid columns="1" gap="12">
+      <Grid columns="1" gap="12" fillWidth style={{ minWidth: 0 }}>
         {STEPS.map((step) => (
-          <Row key={step.label} padding="16" border="neutral-medium" background="surface" radius="m" gap="16" vertical="center" wrap>
-            <Row gap="12" vertical="center" minWidth={120}>
+          <Row
+            key={step.label}
+            fillWidth
+            padding="16"
+            border="neutral-medium"
+            background="surface"
+            radius="m"
+            gap="16"
+            vertical="center"
+            wrap
+            style={{ minWidth: 0, boxSizing: "border-box" }}
+          >
+            <Row gap="12" vertical="center" wrap style={{ minWidth: 0 }}>
               <Badge>{step.stage}</Badge>
               <Text variant="heading-strong-m">{step.label}</Text>
             </Row>
-            <Column flex={1} gap="4">
+            <Column flex={1} gap="4" style={{ minWidth: 0, wordBreak: "break-word" }}>
               <Text variant="body-default-s">{step.description}</Text>
-              <Text variant="label-default-s" onBackground="brand-weak">
+              <Text variant="label-default-s" onBackground="brand-weak" style={{ wordBreak: "break-word" }}>
                 Evidência: {step.evidence}
               </Text>
             </Column>
