@@ -91,8 +91,8 @@ const about: About = {
         timeframe: "2024 — Presente",
         role: "Technical Project Manager & Product Delivery",
         achievements: [
-          "Estruturação e coordenação de entregas do ecossistema multiproduto Roomix (PMS, Channel Manager, Console, Direct, Agents).",
-          "Mapeamento de requisitos regulatórios de FNRH Digital / FNSH (Ministério do Turismo) e governança de privacidade LGPD.",
+          "Estruturação e coordenação de entregas do ecossistema multiproduto Roomix (PMS, Channel Manager, Console, Direct, Agents, Sales Core).",
+          "Mapeamento de requisitos regulatórios de FNRH Digital (Ministério do Turismo) e governança de privacidade LGPD.",
           "Definição de regras de segurança fail-closed, kill switches e suítes automatizadas de testes de integração e QA.",
           "Orquestração do produto Inflowork Canvas Workspace OS e sistemas internos de inteligência operacional.",
         ],

@@ -192,10 +192,11 @@ test("the portfolio contains exactly the five approved cases with Roomix first",
     entries[0].metadata.modules.map((module) => module.name),
     [
       "Roomix SaaS",
-      "Roomix Console",
       "Roomix Channel Manager",
+      "Roomix Console",
       "Roomix Direct",
-      "Booking Generator",
+      "Roomix Agents",
+      "Roomix Sales Core",
     ],
   );
   for (const entry of entries) {

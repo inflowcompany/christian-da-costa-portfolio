@@ -16,11 +16,11 @@ Finalidade: Embasar a narrativa do case do portfólio profissional de Christian 
 
 ## 2. Visão do Produto & Arquitetura dos 6 Componentes do Ecossistema
 
-Roomix é um **Ecossistema de Tecnologia Hospitalar (Hospitality Technology Ecosystem)** operando em arquitetura multi-tenant com segregação por propriedade (`property_id`) e acesso baseado em funções (RBAC).
+Roomix é um **Ecossistema de Tecnologia Hoteleira (Hospitality Technology Ecosystem)** operando em arquitetura multi-tenant com segregação por propriedade (`property_id`) e acesso baseado em funções (RBAC).
 
 Os **6 componentes/produtos confirmados** do ecossistema são:
 
-1. **Roomix SaaS**: Core PMS multi-tenant (gestão de reservas, faturamento, automação de mensagens, compliance FNRH Digital / FNSH e requisições comerciais).
+1. **Roomix SaaS**: Core PMS multi-tenant (gestão de reservas, faturamento, automação de mensagens, compliance FNRH Digital / MinTur e requisições comerciais).
 2. **Roomix Channel Manager**: Motor de conectividade multi-canal gerenciando sincronização bidirecional com OTAs (Booking.com, Airbnb, Expedia, Hostelworld) com travas de segurança *fail-closed*.
 3. **Roomix Console**: Painel de operações de plataforma (Platform Ops), onboarding de propriedades, controle de solicitações comerciais e fila LGPD.
 4. **Roomix Direct / Booking Generator**: Motor de reservas diretas para hóspedes com templates premium e o subproduto **Booking Generator** integrado para intake direto de reservas sem intermediários.
@@ -29,10 +29,9 @@ Os **6 componentes/produtos confirmados** do ecossistema são:
 
 ---
 
-## 3. Módulo FNRH Digital / FNSH (Esclarecimento de Nomenclatura)
+## 3. Módulo FNRH Digital (Esclarecimento de Nomenclatura)
 
-- **FNRH Digital**: Ficha Nacional de Registro de Hóspedes (regulamentação do Ministério do Turismo / FNSH).
-- **FNSH**: Ficha Nacional de Sintetização Hoteleira / Sistema de Registro de Hóspedes do Ministério do Turismo.
+- **FNRH Digital**: Ficha Nacional de Registro de Hóspedes (regulamentação do Ministério do Turismo / MinTur).
 - O módulo implementa mascaramento de CPF, criptografia de chaves por campo no banco de dados e fila de submissão dry-run para conformidade regulatória sem expor dados de hóspedes.
 
 ---
@@ -40,7 +39,7 @@ Os **6 componentes/produtos confirmados** do ecossistema são:
 ## 4. Escopo de Atuação Comprovado de Christian Da Costa
 
 As competências de Christian no ecossistema Roomix concentram-se em:
-- **Discovery & Especificação**: Levantamento de requisitos regulatórios (FNRH Digital / FNSH e LGPD) e elaboração de PRDs/Specs.
+- **Discovery & Especificação**: Levantamento de requisitos regulatórios (FNRH Digital / MinTur e LGPD) e elaboração de PRDs/Specs.
 - **Mapeamento de Processos**: Definição de máquinas de estado para reservas, cobranças e mensageria.
 - **Coordenação de Requisitos e Dependências**: Gestão de entregas, prioridades e validação entre os 6 produtos do ecossistema.
 - **Gestão de Riscos & Travas de Segurança**: Definição de travas operacionais (*kill switches* e flags de ativação em staging/produção).

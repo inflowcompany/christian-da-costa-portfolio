@@ -15,7 +15,7 @@ const PRODUCTS: ProductCardProps[] = [
     role: "Core PMS & Hotel Operations",
     domain: "app.roomix.com.br",
     status: "Production / Staging",
-    modules: ["Reservas & Calendário", "FNRH Digital (MinTur)", "Billing & Faturas", "Automacão de Mensagens", "Gateway de Pagamentos"],
+    modules: ["Reservas & Calendário", "FNRH Digital (MinTur)", "Billing & Faturas", "Automação de Mensagens", "Gateway de Pagamentos"],
     icon: "grid",
   },
   {
@@ -36,10 +36,10 @@ const PRODUCTS: ProductCardProps[] = [
   },
   {
     name: "Roomix Direct",
-    role: "Direct Booking Engine",
+    role: "Direct Booking Engine & Generator",
     domain: "Direct Web Engine",
     status: "Staging / Premium",
-    modules: ["Motor de Reservas Hóspede", "Templates Premium", "Vouchers & Venda Direta", "Pagamento Manual & Direct", "Regras de Tarifas"],
+    modules: ["Motor de Reservas Hóspede", "Booking Generator Integrated", "Templates Premium", "Vouchers & Venda Direta", "Regras de Tarifas"],
     icon: "sparkles",
   },
   {
@@ -49,6 +49,14 @@ const PRODUCTS: ProductCardProps[] = [
     status: "Staging / NVIDIA NIM",
     modules: ["NVIDIA NIM & OpenAI LLM", "Diagnósticos de Smoke", "Budget Guardrails (Nemotron)", "Heartbeat & Cron Tasks", "Tool Dispatch Segura"],
     icon: "cpu",
+  },
+  {
+    name: "Roomix Sales Core",
+    role: "B2B Sales & Commercial Core",
+    domain: "Commercial Pipeline",
+    status: "Production / Active",
+    modules: ["Pipeline de Prospecção B2B", "Onboarding Comercial", "Planos & Tabela de Tarifas", "Qualificação de Leads", "Contratos de Licença"],
+    icon: "rocket",
   },
 ];
 

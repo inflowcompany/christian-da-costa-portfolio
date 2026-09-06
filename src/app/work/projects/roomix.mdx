@@ -8,21 +8,23 @@ team: []
 modules:
   - name: "Roomix SaaS"
     description: "Core PMS multi-tenant, gestão de reservas, faturamento, automação de mensagens e conformidade FNRH Digital/LGPD."
-  - name: "Roomix Console"
-    description: "Painel de operações de plataforma (Platform Ops), onboarding de propriedades, controle de solicitações comerciais e fila LGPD."
   - name: "Roomix Channel Manager"
     description: "Motor de conectividade multi-canal para sincronização bidirecional de tarifas e disponibilidade com OTAs (Booking.com, Airbnb, Expedia)."
+  - name: "Roomix Console"
+    description: "Painel de operações de plataforma (Platform Ops), onboarding de propriedades, controle de solicitações comerciais e fila LGPD."
   - name: "Roomix Direct"
-    description: "Motor de reservas diretas para hóspedes com templates premium, checkout transparente e gestão de vouchers."
-  - name: "Booking Generator"
-    description: "Gerador de reservas e motor de venda direta para hóspedes integrados ao Roomix Direct."
+    description: "Motor de reservas diretas para hóspedes com Booking Generator integrado, templates premium e gestão de vouchers."
+  - name: "Roomix Agents"
+    description: "Sistema autônomo de IA (Jarvis) integrado a LLMs (NVIDIA NIM/OpenAI) para diagnósticos operacionais e monitoramento."
+  - name: "Roomix Sales Core"
+    description: "Núcleo de vendas B2B, gestão comercial e onboarding de novas propriedades hoteleiras."
 ---
 
 ## Overview
 
-**Roomix** é um **Ecossistema de Tecnologia Hospitalar (Hospitality Technology Ecosystem)** desenvolvido para transformar a gestão de propriedades hoteleiras (hotéis, pousadas e resorts). Projetado em arquitetura multi-tenant com segregação rigorosa por propriedade (`property_id`), o ecossistema conecta as operações do dia a dia da hotelaria a canais globais de distribuição, automações de atendimento e inteligência artificial.
+**Roomix** é um **Ecossistema de Tecnologia Hoteleira (Hospitality Technology Ecosystem)** desenvolvido para transformar a gestão de propriedades hoteleiras (hotéis, pousadas e resorts). Projetado em arquitetura multi-tenant com segregação rigorosa por propriedade (`property_id`), o ecossistema conecta as operações do dia a dia da hotelaria a canais globais de distribuição, automações de atendimento e inteligência artificial.
 
-Diferente de um sistema monolítico isolado, o Roomix é composto por cinco produtos interconectados que atendem a diferentes atores da operação hoteleira:
+Diferente de um sistema monolítico isolado, o Roomix é composto por seis produtos e módulos interconectados que atendem a diferentes atores da operação hoteleira:
 
 <RoomixEcosystemMap />
 
@@ -30,7 +32,7 @@ Diferente de um sistema monolítico isolado, o Roomix é composto por cinco prod
 
 ## Context
 
-O mercado de tecnologia hospitalar no Brasil exige alta aderência a regulamentações governamentais e fiscais, além de integração fluida com grandes canais de venda (OTAs) e meios de pagamento digitais. As propriedades enfrentavam gargalos operacionais devido a:
+O mercado de tecnologia hoteleira no Brasil exige alta aderência a regulamentações governamentais e fiscais, além de integração fluida com grandes canais de venda (OTAs) e meios de pagamento digitais. As propriedades enfrentavam gargalos operacionais devido a:
 - Processos manuais de check-in e envio de fichas de hóspedes ao Governo (FNRH/MinTur).
 - Desincronização de inventários entre o sistema local e canais de reserva externos, gerando overbooking.
 - Falta de controle centralizado de consentimentos e privacidade de dados em conformidade com a **LGPD**.
@@ -52,7 +54,7 @@ Como **Technical Project Manager / Product & SaaS Project Manager**, Christian D
 
 - **Discovery & Definição de Produto**: Levantamento de requisitos regulatórios (FNRH Digital / MinTur e LGPD) e tradução em especificações funcionais (PRDs) e especificações técnicas de produto.
 - **Mapeamento de Processos & Requisitos**: Construção de máquinas de estado para reservas, cobranças e mensageria, definindo critérios claros de aceite para desenvolvimento.
-- **Gestão de Escopo & Arquitetura de Produto**: Divisão do ecossistema em cinco produtos desacoplados (SaaS, Console, Channel Manager, Direct e Agents) para mitigar riscos de dependência.
+- **Gestão de Escopo & Arquitetura de Produto**: Divisão do ecossistema em seis componentes operacionais (SaaS, Channel Manager, Console, Direct com Booking Generator, Agents e Sales Core) para mitigar riscos de dependência.
 - **Gestão de Riscos & Travas de Segurança**: Definição e acompanhamento de travas operacionais de produção (*kill switches*, modos dry-run e criptografia de credenciais).
 - **QA & Acceptance Testing**: Estruturação e execução de suítes de teste de integração automatizadas (`fnrh:test`, `lgpd:test`, `billing:test`, `branding:test`, `operational:hardening:test`).
 - **Documentação & Release Management**: Redação de runbooks operacionais, matrizes de readiness de lançamento e controle de implantação em staging/produção.
@@ -63,7 +65,7 @@ Como **Technical Project Manager / Product & SaaS Project Manager**, Christian D
 
 O processo de Discovery transformou dores reais da operação hoteleira e exigências legais em definições estruturadas de produto:
 
-1. **Conformidade FNRH Digital (MinTur)**: Análise das normas da FNSH/Ministério do Turismo para automatizar o envio da Ficha Nacional de Registro de Hóspedes sem expor chaves de API das propriedades ou CPFs de hóspedes em texto claro (`specs/001-fnrh-digital...`).
+1. **Conformidade FNRH Digital (MinTur)**: Análise das normas da FNRH Digital / Ministério do Turismo para automatizar o envio da Ficha Nacional de Registro de Hóspedes sem expor chaves de API das propriedades ou CPFs de hóspedes em texto claro (`specs/001-fnrh-digital...`).
 2. **Conformidade LGPD**: Mapeamento dos direitos dos titulares de dados para criar um portal imutável de consentimentos e relatórios de retenção sem deletar dados fiscais obrigatórios por lei (`docs/LGPD_COMPLIANCE.md`).
 3. **Automação de Comunicação**: Mapeamento dos momentos críticos da jornada do hóspede (criação de reserva, pendência de pagamento, check-in e check-out) para disparar mensagens personalizadas via variáveis nativas (`{{guest_name}}`, `{{payment_link}}`).
 
@@ -83,13 +85,14 @@ O levantamento de requisitos seguiu um fluxo rigoroso de rastreabilidade:
 
 ## Scope
 
-Para evitar os riscos de um monólito frágil, o escopo do ecossistema foi dividido em 5 verticais independentes:
+Para evitar os riscos de um monólito frágil, o escopo do ecossistema foi dividido em 6 verticais integradas:
 
 1. **Roomix SaaS**: Focado no dia a dia da propriedade (PMS, FNRH, Billing, Mensagens e Pagamentos).
 2. **Roomix Channel Manager**: Focado na distribuição e sincronização com OTAs (Booking, Airbnb, Expedia).
 3. **Roomix Console**: Focado na gestão de plataforma, onboarding de contas e governança global.
-4. **Roomix Direct**: Focado na venda direta via website próprio com templates premium e vouchers.
+4. **Roomix Direct**: Focado na venda direta via website próprio com Booking Generator integrado, templates premium e vouchers.
 5. **Roomix Agents**: Focado em diagnósticos autônomos por IA e tarefas em segundo plano (Jarvis AI).
+6. **Roomix Sales Core**: Focado no pipeline comercial B2B, qualificação e onboarding de novas propriedades hoteleiras.
 
 ---
 
@@ -149,7 +152,7 @@ O controle de qualidade no Roomix é sustentado por uma suíte de testes automat
 ## Decisions
 
 - **Decisão 1 — Arquitetura Fail-Closed**: Toda integração com provedores externos (Booking.com, Mercado Pago, FNRH, WhatsApp) permanece desativada por padrão (*fail-closed* 503 ou modo simulação) até que flags duplas de produção sejam configuradas.
-- **Decisão 2 — Padrão Outbox Idempotente**: Adocão do padrão Outbox para disparos de e-mails e atualizações de canais, garantindo que falhas temporárias de rede não dupliquem reservas ou notificações.
+- **Decisão 2 — Padrão Outbox Idempotente**: Adoção do padrão Outbox para disparos de e-mails e atualizações de canais, garantindo que falhas temporárias de rede não dupliquem reservas ou notificações.
 - **Decisão 3 — Agente com Budget Guardrail**: Integração do Jarvis AI (Roomix Agents) com tabela de custos fixada (`COST_TABLE`) e parse estrito de respostas em formato JSON para evitar execuções autônomas fora do orçamento.
 
 ---
@@ -197,13 +200,13 @@ Todos os resultados demonstrados são técnicos e operacionais verificáveis no 
 
 Documentos de auditoria interna, especificações técnicas e runbooks de validação do projeto:
 
-- [Roomix Source of Truth Document](file:///docs/cases/roomix-source-of-truth.md) — Auditoria completa das evidências do ecossistema.
+- **Roomix Source of Truth Document**: Auditoria completa das evidências do ecossistema.
 - Especificações do Projeto: `specs/001-fnrh-digital...`, `specs/001-roomix-launch-readiness`, `specs/002-inventory-pos-evolution`.
 - Runbooks de Operação e QA: `docs/FNRH_DIGITAL.md`, `docs/LGPD_COMPLIANCE.md`, `docs/BILLING_AND_PLANS.md`, `docs/COMMUNICATION_AUTOMATIONS.md`.
 
 <EvidenceBlock kind="image" />
 
-<EvidenceBlock kind="diagram" title="Mapeamento do Ecossistema Roomix" caption="Diagrama dos cinco produtos confirmados do ecossistema Roomix e suas integrações.">
+<EvidenceBlock kind="diagram" title="Mapeamento do Ecossistema Roomix" caption="Diagrama dos seis produtos confirmados do ecossistema Roomix e suas integrações.">
   <RoomixEcosystemMap />
 </EvidenceBlock>
 
@@ -216,5 +219,6 @@ Documentos de auditoria interna, especificações técnicas e runbooks de valida
 </EvidenceBlock>
 
 <EvidenceBlock kind="text" title="Registro de Evidências e Capturas de Tela">
-  [REDACT BEFORE PUBLICATION] — Capturas de tela e evidências visuais de ambiente real passarão por sanitização de dados sensíveis antes da publicação final do portfólio.
+  Capturas de tela e evidências visuais de ambiente real foram sanitizadas para preservação de dados sensíveis das propriedades.
 </EvidenceBlock>
+
